@@ -17,5 +17,42 @@ jobs:
         uses: SonarSource/sonarcloud-github-action@master
         env:  
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-    
-    
+
+name: DevSecOps-Netflix-Project
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+
+jobs:
+  sonar-scan:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: SonarCloud Scan
+        uses: SonarSource/sonarcloud-github-action@master
+        env:  
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+  docker-build:
+    name: Build
+    runs-on: ubuntu-latest
+    depends-on: sonar-scan
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Build an image from Dockerfile
+        run: |
+        docker build --build-arg TMDB_V3_API_KEY=${{ secrets.TMDB }} -t gudditi/netflix .
+      - name: Run Trivy vulnerability scanner
+        uses: aquasecurity/trivy-action@master
+        with:
+          image-ref: 'gudditi/netflix'
+          format: 'table'
+          exit-code: '1'
+          ignore-unfixed: true
+          vuln-type: 'os,library'
+          severity: 'CRITICAL,HIGH'
