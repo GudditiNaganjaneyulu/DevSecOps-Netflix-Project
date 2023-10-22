@@ -21,7 +21,7 @@ jobs:
   docker-build:
     name: Build
     runs-on: ubuntu-latest
-    depends-on: sonar-scan
+    needs:  sonar-scan
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
