@@ -18,25 +18,6 @@ jobs:
         env:  
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
-name: DevSecOps-Netflix-Project
-
-on:
-  push:
-    branches:
-      - main
-  workflow_dispatch:
-
-
-jobs:
-  sonar-scan:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: SonarCloud Scan
-        uses: SonarSource/sonarcloud-github-action@master
-        env:  
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
   docker-build:
     name: Build
     runs-on: ubuntu-latest
