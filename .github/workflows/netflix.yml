@@ -1,8 +1,9 @@
 name: DevSecOps-Netflix-Project
 
-on: 
-  branches:
-    - main
+on:
+  push:
+    branches:
+      - main
   workflow_dispatch:
 
 
