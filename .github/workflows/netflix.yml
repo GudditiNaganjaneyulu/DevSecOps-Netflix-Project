@@ -19,7 +19,10 @@ jobs:
         env:
           SONAR_TOKEN: ${{ secrets.SONARQUBE_TOKEN }}
           SONAR_HOST_URL: ${{ secrets.SONARQUBE_HOST }}
- 
+        with:
+          args: >
+            -Dsonar.projectKey=DevSecOps-Netflix-Project
+            -Dsonar.organization=DevSecOps-Netflix-Project
 
     
     
