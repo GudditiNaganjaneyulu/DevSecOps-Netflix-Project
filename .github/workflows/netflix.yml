@@ -18,6 +18,7 @@ jobs:
         with:
           host: ${{ secrets.SONARQUBE_HOST }}
           login: ${{ secrets.SONARQUBE_TOKEN }}
+          organization: DevSecOps-Netflix-Project
 
 
     
