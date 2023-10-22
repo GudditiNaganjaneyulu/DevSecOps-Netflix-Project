@@ -13,16 +13,9 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-
-      - name: SonarQube Scan
-        uses: sonarsource/sonarqube-scan-action@master
-        env:
-          SONAR_TOKEN: ${{ secrets.SONARQUBE_TOKEN }}
-          SONAR_HOST_URL: ${{ secrets.SONARQUBE_HOST }}
-        with:
-          args: >
-            -Dsonar.projectKey=DevSecOps-Netflix-Project
-            -Dsonar.organization=DevSecOps-Netflix-Project
-
+      - name: SonarCloud Scan
+        uses: SonarSource/sonarcloud-github-action@master
+        env:  
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
     
     
