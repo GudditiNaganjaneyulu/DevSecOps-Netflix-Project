@@ -27,7 +27,7 @@ jobs:
         uses: actions/checkout@v4
       - name: Build an image from Dockerfile
         run: |
-        docker build --build-arg TMDB_V3_API_KEY=${{ secrets.TMDB }} -t gudditi/netflix .
+          docker build --build-arg TMDB_V3_API_KEY=${{ secrets.TMDB }} -t gudditi/netflix .
       - name: Run Trivy vulnerability scanner
         uses: aquasecurity/trivy-action@master
         with:
