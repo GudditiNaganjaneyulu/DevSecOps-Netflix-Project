@@ -20,6 +20,7 @@ jobs:
           login: ${{ secrets.SONARQUBE_TOKEN }}
           projectName: DevSecOps-Netflix-Project
           projectKey: DevSecOps-Netflix-Project
+          sonar.organization: DevSecOps-Netflix-Project
 
 
     
