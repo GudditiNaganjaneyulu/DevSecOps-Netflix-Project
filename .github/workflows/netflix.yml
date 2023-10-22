@@ -1,0 +1,23 @@
+name: DevSecOps-Netflix-Project
+
+on: 
+  branches:
+    - main
+  workflow_dispatch:
+
+
+jobs:
+  sonar-scan:
+    runs-on: ubuntu
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: SonarQube Scan
+        uses: kitabisa/sonarqube-action@v1.2.0
+        with:
+          host: ${{ secrets.SONARQUBE_HOST }}
+          login: ${{ secrets.SONARQUBE_TOKEN }}
+
+
+    
+    
